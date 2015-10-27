@@ -1,0 +1,7 @@
+---
+spark_ver : '1.5.1'
+spark_hadoop_ver : 'hadoop2.6'
+spark_tgz : 'spark-{{ spark_ver }}-bin-{{ spark_hadoop_ver }}.tgz'
+spark_mirror : 'mirrors.ibiblio.org/apache/spark'
+spark_url : 'http://{{ spark_mirror }}/spark-{{ spark_ver }}/{{ spark_tgz }}'
+spark_target_dir : '/opt/spark-{{ spark_ver }}-bin-{{ spark_hadoop_ver }}'
