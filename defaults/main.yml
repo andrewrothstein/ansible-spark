@@ -1,0 +1,4 @@
+---
+spark_ver : '1.5.2'
+spark_hadoop_ver : 'hadoop2.6'
+spark_mirror_url : 'http://mirrors.ibiblio.org/apache/spark'
