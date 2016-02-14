@@ -1,13 +1,31 @@
 ---
 - name: download spark...
-  environment: proxy_env
-  get_url: url='{{ spark_url }}' dest='/tmp/{{ spark_tgz }}'
+  get_url: >
+    url={{spark_url}}
+    dest=/tmp/{{spark_tgz}}
+    owner=root
+    group=root
+    mode=0644
 
 - name: install spark to /opt...
-  unarchive: copy=no dest='/opt' src='/tmp/{{ spark_tgz }}'
+  unarchive: >
+    copy=no
+    dest=/opt
+    src=/tmp/{{spark_tgz}}
+    creates={{spark_target_dir}}
 
 - name: link /opt/spark...
-  file: src={{spark_target_dir}} dest=/opt/spark state=link
+  file: >
+    src={{spark_target_dir}}
+    dest=/opt/spark
+    state=link
+    owner=root
+    group=root
 
 - name: include spark in the default path...
-  copy: src='etc/profile.d/spark.sh' dest='/etc/profile.d/spark.sh' mode=644
+  copy: >
+    src=etc/profile.d/spark.sh
+    dest=/etc/profile.d/spark.sh
+    owner=root
+    group=root
+    mode=0644
