@@ -1,5 +1,7 @@
 ---
 - name: download spark...
+  become: yes
+  become_user: root
   get_url: >
     url={{spark_url}}
     dest=/tmp/{{spark_tgz}}
@@ -8,6 +10,8 @@
     mode=0644
 
 - name: install spark to /opt...
+  become: yes
+  become_user: root
   unarchive: >
     copy=no
     dest=/opt
@@ -15,6 +19,8 @@
     creates={{spark_target_dir}}
 
 - name: link /opt/spark...
+  become: yes
+  become_user: root
   file: >
     src={{spark_target_dir}}
     dest=/opt/spark
@@ -23,6 +29,8 @@
     group=root
 
 - name: include spark in the default path...
+  become: yes
+  become_user: root
   copy: >
     src=etc/profile.d/spark.sh
     dest=/etc/profile.d/spark.sh
