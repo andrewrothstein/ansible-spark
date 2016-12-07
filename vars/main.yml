@@ -1,8 +1,9 @@
 ---
-spark_tgz : 'spark-{{spark_ver}}-bin-{{spark_hadoop_ver}}.tgz'
+spark_name: spark-{{spark_ver}}
+spark_hadoop_name: '{{spark_name}}-bin-{{spark_hadoop_ver}}'
+spark_tgz : '{{spark_hadoop_name}}.tgz'
 
 # http://apache.claz.org/spark/spark-1.5.2/spark-1.5.2-bin-hadoop2.6.tgz
-spark_url : '{{spark_mirror_url}}/spark-{{spark_ver}}/{{spark_tgz}}'
+spark_url : '{{spark_mirror_url}}/{{spark_name}}/{{spark_tgz}}'
 
-
-spark_target_dir : '/opt/spark-{{spark_ver}}-bin-{{spark_hadoop_ver}}'
+spark_target_dir : /opt/{{spark_hadoop_name}}

@@ -1,4 +1,5 @@
 ---
-spark_ver : '2.0.0'
+spark_ver : '2.0.2'
 spark_hadoop_ver : 'hadoop2.7'
 spark_mirror_url : 'http://mirror.symnds.com/software/Apache/spark'
+spark_parent_dir: /opt
