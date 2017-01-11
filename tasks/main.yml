@@ -6,8 +6,9 @@
     url={{spark_url}}
     dest=/tmp/{{spark_tgz}}
     mode=0644
+    checksum={{spark_checksum}}
 
-- name: install spark to /opt...
+- name: unarchive spark....
   become: yes
   become_user: root
   unarchive: >
@@ -16,7 +17,7 @@
     src=/tmp/{{spark_tgz}}
     creates={{spark_parent_dir}}/{{spark_hadoop_name}}
 
-- name: link /opt/spark...
+- name: link spark...
   become: yes
   become_user: root
   file: >
