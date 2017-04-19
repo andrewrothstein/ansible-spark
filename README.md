@@ -1,7 +1,8 @@
+[![CircleCI](https://circleci.com/gh/andrewrothstein/ansible-spark.svg?style=svg)](https://circleci.com/gh/andrewrothstein/ansible-spark)
 andrewrothstein.spark
 =========
 
-Role to install [Apache Spark](https://spark.apache.org)
+Installs [Apache Spark](https://spark.apache.org).
 
 Requirements
 ------------
