@@ -7,6 +7,7 @@
     dest=/tmp/{{spark_tgz}}
     mode=0644
     checksum={{spark_checksum}}
+    timeout={{spark_timeout}}
 
 - name: unarchive spark....
   become: yes
