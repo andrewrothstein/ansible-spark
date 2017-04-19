@@ -2,36 +2,38 @@
 - name: download spark...
   become: yes
   become_user: root
-  get_url: >
-    url={{spark_url}}
-    dest=/tmp/{{spark_tgz}}
-    mode=0644
-    checksum={{spark_checksum}}
-    timeout={{spark_timeout}}
+  get_url:
+    url: '{{spark_url}}'
+    dest: /tmp/{{spark_tgz}}
+    mode: 0644
+    checksum: '{{spark_checksum}}'
+    timeout: '{{spark_timeout}}'
 
 - name: unarchive spark....
   become: yes
   become_user: root
-  unarchive: >
-    copy=no
-    dest={{spark_parent_dir}}
-    src=/tmp/{{spark_tgz}}
-    creates={{spark_parent_dir}}/{{spark_hadoop_name}}
+  unarchive:
+    copy: no
+    dest: '{{spark_parent_dir}}'
+    src: /tmp/{{spark_tgz}}
+    creates: '{{spark_parent_dir}}/{{spark_hadoop_name}}'
 
 - name: link spark...
   become: yes
   become_user: root
-  file: >
-    src={{spark_target_dir}}
-    dest={{spark_parent_dir}}/spark
-    state=link
+  file:
+    src: '{{spark_target_dir}}'
+    dest: '{{spark_parent_dir}}/spark'
+    state: link
 
 - name: include spark in the default path...
   become: yes
   become_user: root
   with_items:
-    - etc/profile.d/spark.sh
-  template: >
-    src={{item}}.j2
-    dest=/{{item}}
-    mode=0644
+    - f: spark.sh
+      d: /etc/profile.d
+      m: '0644'
+  template:
+    src: '{{item.f}}.j2'
+    dest: '{{item.d}}/{{item.f}}'
+    mode: '{{item.m}}'
