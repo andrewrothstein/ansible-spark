@@ -1,8 +1,8 @@
 ---
-spark_ver : '2.1.0'
+spark_ver : '2.1.1'
 spark_hadoop_ver : hadoop2.7
 spark_mirror_url : http://mirrors.sonic.net/apache/spark
-spark_checksum: sha256:0834c775f38473f67cb122e0ec21074f800ced50c1ff1b9e37e222a0069dc5c7
+spark_checksum: sha256:372ac4f73221c07696793101007a4f19e31566d1f0d9bd0e5205b6fb5b45bfc2
 spark_parent_dir: /usr/local
 spark_timeout: 10
 
