@@ -16,14 +16,14 @@
     copy: no
     dest: '{{spark_parent_dir}}'
     src: /tmp/{{spark_tgz}}
-    creates: '{{spark_parent_dir}}/{{spark_hadoop_name}}'
+    creates: '{{spark_target_dir}}'
 
 - name: link spark...
   become: yes
   become_user: root
   file:
     src: '{{spark_target_dir}}'
-    dest: '{{spark_parent_dir}}/spark'
+    dest: '{{spark_link_dir}}'
     state: link
 
 - name: include spark in the default path...
@@ -33,7 +33,18 @@
     - f: spark.sh
       d: /etc/profile.d
       m: '0644'
+    - f: spark.env
+      d: '{{spark_target_dir}}'
+      m: '0644'
   template:
     src: '{{item.f}}.j2'
     dest: '{{item.d}}/{{item.f}}'
     mode: '{{item.m}}'
+
+- name: cleanup...
+  become: yes
+  become_user: root
+  when: spark_cleanup
+  file:
+    path: /tmp/{{spark_tgz}}
+    state: absent

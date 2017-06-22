@@ -1,6 +1,6 @@
 andrewrothstein.spark
 =========
-[![CircleCI](https://circleci.com/gh/andrewrothstein/ansible-spark.svg?style=svg)](https://circleci.com/gh/andrewrothstein/ansible-spark)
+[![Build Status](https://travis-ci.org/andrewrothstein/ansible-spark.svg?branch=master)](https://travis-ci.org/andrewrothstein/ansible-spark)
 
 Installs [Apache Spark](https://spark.apache.org).
 

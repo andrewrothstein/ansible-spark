@@ -5,6 +5,7 @@ spark_mirror_url : http://mirrors.sonic.net/apache/spark
 spark_checksum: sha256:372ac4f73221c07696793101007a4f19e31566d1f0d9bd0e5205b6fb5b45bfc2
 spark_parent_dir: /usr/local
 spark_timeout: 10
+spark_cleanup: False
 
 # SPARK_HOME and PATH envs would be updated with this installation. To set other Spark related env, use the dictionary below
 #spark_envs:
