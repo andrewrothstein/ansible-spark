@@ -13,7 +13,7 @@
   become: yes
   become_user: root
   unarchive:
-    remote_src: no
+    remote_src: yes
     dest: '{{spark_parent_dir}}'
     src: /tmp/{{spark_tgz}}
     creates: '{{spark_target_dir}}'
