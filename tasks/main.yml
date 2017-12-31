@@ -1,22 +1,38 @@
 ---
-- name: download spark...
+- name: check for spark installation
   become: yes
-  become_user: root
-  get_url:
-    url: '{{spark_url}}'
-    dest: /tmp/{{spark_tgz}}
-    mode: 0644
-    checksum: '{{spark_checksum}}'
-    timeout: '{{spark_timeout}}'
+  stat:
+    path: '{{spark_target_dir}}'
+  changed_when: false
+  register: spark_binary
 
-- name: unarchive spark....
-  become: yes
-  become_user: root
-  unarchive:
-    remote_src: yes
-    dest: '{{spark_parent_dir}}'
-    src: /tmp/{{spark_tgz}}
-    creates: '{{spark_target_dir}}'
+- when: not spark_binary.stat.exists
+  block:
+    - name: download spark...
+      become: yes
+      become_user: root
+      get_url:
+        url: '{{spark_url}}'
+        dest: /tmp/{{spark_tgz}}
+        mode: 0644
+        checksum: '{{spark_checksum}}'
+        timeout: '{{spark_timeout}}'
+
+    - name: unarchive spark....
+      become: yes
+      become_user: root
+      unarchive:
+        remote_src: yes
+        dest: '{{spark_parent_dir}}'
+        src: /tmp/{{spark_tgz}}
+        creates: '{{spark_target_dir}}'
+  always:
+    - name: cleanup...
+      become: yes
+      become_user: root
+      file:
+        path: /tmp/{{spark_tgz}}
+        state: absent
 
 - name: link spark...
   become: yes
@@ -40,11 +56,3 @@
     src: '{{item.f}}.j2'
     dest: '{{item.d}}/{{item.f}}'
     mode: '{{item.m}}'
-
-- name: cleanup...
-  become: yes
-  become_user: root
-  when: spark_cleanup
-  file:
-    path: /tmp/{{spark_tgz}}
-    state: absent
