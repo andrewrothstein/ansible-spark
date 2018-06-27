@@ -1,5 +1,5 @@
 ---
-spark_ver : '2.3.0'
+spark_ver : '2.3.1'
 spark_hadoop_ver : hadoop2.7
 spark_mirror_url : https://archive.apache.org/dist/spark
 spark_checksums:
@@ -14,6 +14,11 @@ spark_checksums:
     hadoop2.6: sha256:2e341ae3eb45eb46832e2a664b5660ae4c3517dd3c4b24340f3a2972dce26461
     # https://archive.apache.org/dist/spark/spark-2.3.0/spark-2.3.0-bin-hadoop2.7.tgz
     hadoop2.7: sha256:5cfbc77d140454c895f2d8125c0a751465f53cbe12720da763b1785d25c63f05
+  '2.3.1':
+    # https://archive.apache.org/dist/spark/spark-2.3.1/spark-2.3.1-bin-hadoop2.6.tgz
+    hadoop2.6: sha256:dae39d94200610ed8a7e2bfd0a09720cd1e1c743af35ef820e349e40b3a32782
+    # https://archive.apache.org/dist/spark/spark-2.3.1/spark-2.3.1-bin-hadoop2.7.tgz
+    hadoop2.7: sha256:e87499e5417a64341cbda25e087632dd9f6ce7ad249dfeba47d9d02a51305fc2
   
 spark_parent_dir: /usr/local
 spark_timeout: 10
