@@ -5,7 +5,6 @@
     path: '{{spark_target_dir}}'
   changed_when: false
   register: spark_binary
-
 - when: not spark_binary.stat.exists
   block:
     - name: download spark...
@@ -17,7 +16,6 @@
         mode: 0644
         checksum: '{{spark_checksum}}'
         timeout: '{{spark_timeout}}'
-
     - name: unarchive spark....
       become: yes
       become_user: root
@@ -33,7 +31,6 @@
       file:
         path: /tmp/{{spark_tgz}}
         state: absent
-
 - name: link spark...
   become: yes
   become_user: root
@@ -41,7 +38,6 @@
     src: '{{spark_target_dir}}'
     dest: '{{spark_link_dir}}'
     state: link
-
 - name: include spark in the default path...
   become: yes
   become_user: root
