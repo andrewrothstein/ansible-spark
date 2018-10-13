@@ -6,5 +6,5 @@ spark_tgz: '{{spark_hadoop_name}}.tgz'
 spark_url: '{{spark_mirror_url}}/{{spark_name}}/{{spark_tgz}}'
 spark_checksum: '{{spark_checksums[spark_ver][spark_hadoop_ver]}}'
 
-spark_target_dir : '{{spark_parent_dir}}/{{spark_hadoop_name}}'
+spark_target_dir: '{{spark_parent_dir}}/{{spark_hadoop_name}}'
 spark_link_dir: '{{spark_parent_dir}}/spark'
