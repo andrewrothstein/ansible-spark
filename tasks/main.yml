@@ -2,7 +2,7 @@
 - name: check for spark installation
   become: yes
   stat:
-    path: '{{spark_target_dir}}'
+    path: '{{ spark_target_dir }}'
   changed_when: false
   register: spark_binary
 - when: not spark_binary.stat.exists
@@ -11,32 +11,32 @@
       become: yes
       become_user: root
       get_url:
-        url: '{{spark_url}}'
-        dest: /tmp/{{spark_tgz}}
+        url: '{{ spark_url }}'
+        dest: /tmp/{{ spark_tgz }}
         mode: 0644
-        checksum: '{{spark_checksum}}'
-        timeout: '{{spark_timeout}}'
+        checksum: '{{ spark_checksum }}'
+        timeout: '{{ spark_timeout }}'
     - name: unarchive spark....
       become: yes
       become_user: root
       unarchive:
         remote_src: yes
-        dest: '{{spark_parent_dir}}'
-        src: /tmp/{{spark_tgz}}
-        creates: '{{spark_target_dir}}'
+        dest: '{{ spark_parent_dir }}'
+        src: /tmp/{{ spark_tgz }}
+        creates: '{{ spark_target_dir }}'
   always:
     - name: cleanup...
       become: yes
       become_user: root
       file:
-        path: /tmp/{{spark_tgz}}
+        path: /tmp/{{ spark_tgz }}
         state: absent
 - name: link spark...
   become: yes
   become_user: root
   file:
-    src: '{{spark_target_dir}}'
-    dest: '{{spark_link_dir}}'
+    src: '{{ spark_target_dir }}'
+    dest: '{{ spark_link_dir }}'
     state: link
 - name: include spark in the default path...
   become: yes
@@ -46,9 +46,9 @@
       d: /etc/profile.d
       m: '0644'
     - f: spark.env
-      d: '{{spark_target_dir}}'
+      d: '{{ spark_target_dir }}'
       m: '0644'
   template:
-    src: '{{item.f}}.j2'
-    dest: '{{item.d}}/{{item.f}}'
-    mode: '{{item.m}}'
+    src: '{{ item.f }}.j2'
+    dest: '{{ item.d }}/{{ item.f }}'
+    mode: '{{ item.m }}'
