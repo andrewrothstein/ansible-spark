@@ -1,18 +1,22 @@
 #!/usr/bin/env sh
-VER=${1:-2.4.4}
 DIR=~/Downloads
-MIRROR=https://archive.apache.org/dist/spark/spark-${VER}
+MIRROR=https://archive.apache.org/dist/spark
 
 dl()
 {
-    HADOOP=$1
-    URL=${MIRROR}/spark-${VER}-bin-${HADOOP}.tgz.sha512
-    printf "    # %s\n" $URL
-    printf "    %s: sha512:%s\n" $HADOOP `curl -sSL $URL | tr -d '\n' | tr -d ' ' | awk -F: '{print $2}'`
+    local ver=$1
+    local hadoop_ver=$2
+    local url=${MIRROR}/spark-${ver}/spark-${ver}-bin-${hadoop_ver}.tgz.sha512
+    printf "    # %s\n" $url
+    printf "    %s: sha512:%s\n" $hadoop_ver $(curl -sSL $url | tr -d '\n' | tr -d ' ' | awk -F: '{print $2}')
 }
 
-printf "  '%s':\n" $VER
-dl hadoop2.6
-dl hadoop2.7
+dl_ver() {
+    local ver=$1
+    printf "  '%s':\n" $ver
+    dl $ver hadoop2.6
+    dl $ver hadoop2.7
+}
 
 
+dl_ver ${1:-2.4.4}
