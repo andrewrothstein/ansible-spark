@@ -1,7 +1,16 @@
 ---
-spark_ver: '2.4.4'
+spark_ver: '2.4.5'
 spark_hadoop_ver: hadoop2.7
 spark_mirror_url: https://archive.apache.org/dist/spark
+
+spark_parent_dir: /usr/local
+spark_timeout: 10
+
+# SPARK_HOME and PATH envs would be updated with this installation. To set other Spark related env, use the dictionary below
+#spark_envs:
+#  SPARK_OPTS: --driver-java-options=-Xmx4096M
+#  PYTHONPATH: $SPARK_HOME/python
+
 spark_checksums:
   '2.2.0':
     # https://archive.apache.org/dist/spark/spark-2.2.0/spark-2.2.0-bin-hadoop2.7.tgz
@@ -57,11 +66,8 @@ spark_checksums:
     hadoop2.6: sha512:793D68D633640C7DD4517E9B467CF40EB67FC45EB33208A4A4143CDF7B30900BD02DE7B8289D5DAB211E669CC3C08F48306449EE4B7183DE93975A1AC5C24333
     # https://archive.apache.org/dist/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz.sha512
     hadoop2.7: sha512:2E3A5C853B9F28C7D4525C0ADCB0D971B73AD47D5CCE138C85335B9F53A6519540D3923CB0B5CEE41E386E49AE8A409A51AB7194BA11A254E037A848D0C4A9E5
-
-spark_parent_dir: /usr/local
-spark_timeout: 10
-
-# SPARK_HOME and PATH envs would be updated with this installation. To set other Spark related env, use the dictionary below
-#spark_envs:
-#  SPARK_OPTS: --driver-java-options=-Xmx4096M
-#  PYTHONPATH: $SPARK_HOME/python
+  '2.4.5':
+    # https://archive.apache.org/dist/spark/spark-2.4.5/spark-2.4.5-bin-hadoop2.6.tgz.sha512
+    hadoop2.6: sha512:93AA64A6A0A98BE7134214A38EDB8FE13EDFB977383D4C6ABDBA03CB457A0BCCECA4912D331421A75E78FB1B24C8DFF3C6B4AC7991FB70352C4C9F3AC56E34C1
+    # https://archive.apache.org/dist/spark/spark-2.4.5/spark-2.4.5-bin-hadoop2.7.tgz.sha512
+    hadoop2.7: sha512:2426A20C548BDFC07DF288CD1D18D1DA6B3189D0B78DEE76FA034C52A4E02895F0AD460720C526F163BA63A17EFAE4764C46A1CD8F9B04C60F9937A554DB85D2
