@@ -18,5 +18,4 @@ dl_ver() {
     dl $ver hadoop2.7
 }
 
-
-dl_ver ${1:-2.4.5}
+dl_ver ${1:-2.4.6}
