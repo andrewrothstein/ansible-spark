@@ -3,11 +3,11 @@ dependencies:
   version: v1.1.5
 - openjdk_app: jdk
   role: andrewrothstein.openjdk
-  version: v2.0.8
+  version: v2.0.13
 galaxy_info:
   author: Andrew Rothstein
   company: BlackRock
-  description: apache spark role
+  description: installs Apache Spark
   galaxy_tags:
   - hadoop
   - spark
@@ -20,6 +20,7 @@ galaxy_info:
     - all
   - name: Debian
     versions:
+    - bullseye
     - buster
     - stretch
   - name: EL
