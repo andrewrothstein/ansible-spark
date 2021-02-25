@@ -2,6 +2,7 @@
 spark_name: spark-{{spark_ver}}
 spark_hadoop_name: '{{spark_name}}-bin-{{spark_hadoop_ver}}'
 spark_tgz: '{{spark_hadoop_name}}.tgz'
+spark_tmp_tgz: /tmp/{{ spark_tgz }}
 
 spark_url: '{{spark_mirror_url}}/{{spark_name}}/{{spark_tgz}}'
 spark_checksum: '{{spark_checksums[spark_ver][spark_hadoop_ver]}}'

@@ -7,31 +7,31 @@
   register: spark_binary
 - when: not spark_binary.stat.exists
   block:
-    - name: download spark...
+    - name: downloading spark from {{ spark_url }}
       become: yes
       become_user: root
       get_url:
         url: '{{ spark_url }}'
-        dest: /tmp/{{ spark_tgz }}
+        dest: '{{ spark_tmp_tgz }}'
         mode: 0644
         checksum: '{{ spark_checksum }}'
         timeout: '{{ spark_timeout }}'
-    - name: unarchive spark....
+    - name: unarchive {{ spark_tmp_tgz }}
       become: yes
       become_user: root
       unarchive:
         remote_src: yes
         dest: '{{ spark_parent_dir }}'
-        src: /tmp/{{ spark_tgz }}
+        src: '{{ spark_tmp_tgz }}'
         creates: '{{ spark_target_dir }}'
   always:
-    - name: cleanup...
+    - name: rm {{ spark_tmp_tgz }}
       become: yes
       become_user: root
       file:
-        path: /tmp/{{ spark_tgz }}
+        path: '{{ spark_tmp_tgz }}'
         state: absent
-- name: link spark...
+- name: linking {{ spark_link_dir }} to {{ spark_target_dir }}
   become: yes
   become_user: root
   file:
