@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+set -e
 DIR=~/Downloads
 MIRROR=https://archive.apache.org/dist/spark
 
@@ -15,9 +16,8 @@ dl_ver() {
     local ver=$1
     printf "  '%s':\n" $ver
     dl $ver hadoop2.7
-    dl $ver hadoop2.7-hive1.2
     dl $ver hadoop3.2
     dl $ver without-hadoop
 }
 
-dl_ver ${1:-3.0.2}
+dl_ver ${1:-3.1.1}
