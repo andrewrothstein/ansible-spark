@@ -20,4 +20,4 @@ dl_ver() {
     dl $ver without-hadoop
 }
 
-dl_ver ${1:-3.1.1}
+dl_ver ${1:-3.1.2}
