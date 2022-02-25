@@ -1,9 +1,7 @@
 dependencies:
-- role: andrewrothstein.unarchive-deps
-  version: v1.2.0
+- andrewrothstein.unarchive-deps
 - openjdk_app: jdk
-  role: andrewrothstein.openjdk
-  version: v2.0.15
+  role: andrewrothstein.temurin
 galaxy_info:
   author: Andrew Rothstein
   company: BlackRock
@@ -15,6 +13,9 @@ galaxy_info:
   - MIT
   min_ansible_version: 1.2
   platforms:
+  - name: Alpine
+    versions:
+    - all
   - name: Archlinux
     versions:
     - all
@@ -27,8 +28,8 @@ galaxy_info:
     - 8
   - name: Fedora
     versions:
-    - 34
     - 35
+    - 36
   - name: Ubuntu
     versions:
     - bionic
