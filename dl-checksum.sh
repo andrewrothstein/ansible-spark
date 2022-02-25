@@ -9,7 +9,7 @@ dl()
     local hadoop_ver=$2
     local url=${MIRROR}/spark-${ver}/spark-${ver}-bin-${hadoop_ver}.tgz.sha512
     printf "    # %s\n" $url
-    printf "    %s: sha512:%s\n" $hadoop_ver $(curl -sSL $url | tr -d '\n' | tr -d ' ' | awk -F: '{print $2}')
+    printf "    %s: sha512:%s\n" $hadoop_ver $(curl -sSLf $url | tr -d '\n' | tr -d ' ' | awk -F: '{print $2}')
 }
 
 dl_ver() {
@@ -20,4 +20,4 @@ dl_ver() {
     dl $ver without-hadoop
 }
 
-dl_ver ${1:-3.2.0}
+dl_ver ${1:-3.2.1}
