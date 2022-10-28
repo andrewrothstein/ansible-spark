@@ -1,6 +1,12 @@
 ---
+- include_role:
+    name: andrewrothstein.unarchive-deps
+- include_role:
+    name: andrewrothstein.temurin
+  vars:
+    openjdk_app: jdk
 - name: check for spark installation
-  become: yes
+  become: true
   stat:
     path: '{{ spark_target_dir }}'
   changed_when: false
@@ -8,7 +14,7 @@
 - when: not spark_binary.stat.exists
   block:
     - name: downloading spark from {{ spark_url }}
-      become: yes
+      become: true
       become_user: root
       get_url:
         url: '{{ spark_url }}'
@@ -17,29 +23,29 @@
         checksum: '{{ spark_checksum }}'
         timeout: '{{ spark_timeout }}'
     - name: unarchive {{ spark_tmp_tgz }}
-      become: yes
+      become: true
       become_user: root
       unarchive:
-        remote_src: yes
+        remote_src: true
         dest: '{{ spark_parent_dir }}'
         src: '{{ spark_tmp_tgz }}'
         creates: '{{ spark_target_dir }}'
   always:
     - name: rm {{ spark_tmp_tgz }}
-      become: yes
+      become: true
       become_user: root
       file:
         path: '{{ spark_tmp_tgz }}'
         state: absent
 - name: linking {{ spark_link_dir }} to {{ spark_target_dir }}
-  become: yes
+  become: true
   become_user: root
   file:
     src: '{{ spark_target_dir }}'
     dest: '{{ spark_link_dir }}'
     state: link
 - name: include spark in the default path...
-  become: yes
+  become: true
   become_user: root
   with_items:
     - f: spark.sh

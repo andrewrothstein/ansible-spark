@@ -3,9 +3,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install Python dependencies
@@ -27,14 +27,15 @@ jobs:
         - archlinux_latest
         - debian_bullseye
         - debian_buster
-        - fedora_35
         - fedora_36
+        - fedora_37
         - rockylinux_8
+        - rockylinux_9
         - ubuntu_bionic
         - ubuntu_focal
         - ubuntu_jammy
-        python-versions:
-        - '3.9'
+        python-version:
+        - '3.10'
 name: dcb
 'on':
 - push
