@@ -6,10 +6,11 @@ spark_mirror_url: https://archive.apache.org/dist/spark
 spark_parent_dir: /usr/local
 spark_timeout: 10
 
-# SPARK_HOME and PATH envs would be updated with this installation. To set other Spark related env, use the dictionary below
-#spark_envs:
-#  SPARK_OPTS: --driver-java-options=-Xmx4096M
-#  PYTHONPATH: $SPARK_HOME/python
+## SPARK_HOME and PATH envs would be updated with this installation.
+## To set other Spark related env, use the dictionary below
+## spark_envs:
+##   SPARK_OPTS: --driver-java-options=-Xmx4096M
+##   PYTHONPATH: $SPARK_HOME/python
 
 spark_checksums:
   '2.2.0':
