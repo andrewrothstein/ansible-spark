@@ -7,6 +7,7 @@ jobs:
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
       with:
+        cache: pip
         python-version: ${{ matrix.python-version }}
     - name: Install Python dependencies
       run: 'python -m pip install --upgrade pip
@@ -21,8 +22,8 @@ jobs:
     strategy:
       matrix:
         os:
-        - alpine_3.15
         - alpine_3.16
+        - alpine_3.17
         - alpine_edge
         - archlinux_latest
         - debian_bullseye
