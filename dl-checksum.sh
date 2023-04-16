@@ -15,10 +15,9 @@ dl()
 dl_ver() {
     local ver=$1
     printf "  '%s':\n" $ver
-    dl $ver hadoop2
     dl $ver hadoop3-scala2.13
     dl $ver hadoop3
     dl $ver without-hadoop
 }
 
-dl_ver ${1:-3.3.2}
+dl_ver ${1:-3.4.0}
