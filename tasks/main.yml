@@ -1,60 +1,62 @@
 ---
-- include_role:
+- name: Install unarchivedeps
+  ansible.builtin.include_role:
     name: andrewrothstein.unarchivedeps
-- include_role:
+- name: Install temurin
+  ansible.builtin.include_role:
     name: andrewrothstein.temurin
   vars:
     openjdk_app: jdk
-- name: check for spark installation
+- name: Check for spark installation at {{ spark_target_dir }}
   become: true
-  stat:
+  ansible.builtin.stat:
     path: '{{ spark_target_dir }}'
   changed_when: false
   register: spark_binary
 - when: not spark_binary.stat.exists
   block:
-    - name: downloading spark from {{ spark_url }}
+    - name: Downloading spark from {{ spark_url }}
       become: true
       become_user: root
-      get_url:
+      ansible.builtin.get_url:
         url: '{{ spark_url }}'
         dest: '{{ spark_tmp_tgz }}'
-        mode: 0644
+        mode: '644'
         checksum: '{{ spark_checksum }}'
         timeout: '{{ spark_timeout }}'
-    - name: unarchive {{ spark_tmp_tgz }}
+    - name: Unarchive {{ spark_tmp_tgz }}
       become: true
       become_user: root
-      unarchive:
+      ansible.builtin.unarchive:
         remote_src: true
         dest: '{{ spark_parent_dir }}'
         src: '{{ spark_tmp_tgz }}'
         creates: '{{ spark_target_dir }}'
   always:
-    - name: rm {{ spark_tmp_tgz }}
+    - name: Rm {{ spark_tmp_tgz }}
       become: true
       become_user: root
-      file:
+      ansible.builtin.file:
         path: '{{ spark_tmp_tgz }}'
         state: absent
-- name: linking {{ spark_link_dir }} to {{ spark_target_dir }}
+- name: Linking {{ spark_link_dir }} to {{ spark_target_dir }}
   become: true
   become_user: root
-  file:
+  ansible.builtin.file:
     src: '{{ spark_target_dir }}'
     dest: '{{ spark_link_dir }}'
     state: link
-- name: include spark in the default path...
+- name: Include spark in the default login path...
   become: true
   become_user: root
   with_items:
     - f: spark.sh
       d: /etc/profile.d
-      m: '0644'
+      m: '644'
     - f: spark.env
       d: '{{ spark_target_dir }}'
-      m: '0644'
-  template:
+      m: '644'
+  ansible.builtin.template:
     src: '{{ item.f }}.j2'
     dest: '{{ item.d }}/{{ item.f }}'
     mode: '{{ item.m }}'
