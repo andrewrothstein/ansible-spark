@@ -1,4 +1,5 @@
 ---
-- hosts: all
+- name: Testing andrewrothstein.spark
+  hosts: all
   roles:
     - role: '{{ playbook_dir }}'
