@@ -1,19 +1,17 @@
 ---
-- name: Install unarchivedeps
-  ansible.builtin.include_role:
-    name: andrewrothstein.unarchivedeps
 - name: Install temurin
   ansible.builtin.include_role:
     name: andrewrothstein.temurin
   vars:
-    openjdk_app: jdk
+    temurin_app: jdk
 - name: Check for spark installation at {{ spark_target_dir }}
   become: true
   ansible.builtin.stat:
     path: '{{ spark_target_dir }}'
   changed_when: false
   register: spark_binary
-- when: not spark_binary.stat.exists
+- name: Downloading and installing spark
+  when: not spark_binary.stat.exists
   block:
     - name: Downloading spark from {{ spark_url }}
       become: true
@@ -24,6 +22,9 @@
         mode: '644'
         checksum: '{{ spark_checksum }}'
         timeout: '{{ spark_timeout }}'
+    - name: Install unarchivedeps
+      ansible.builtin.include_role:
+        name: andrewrothstein.unarchivedeps
     - name: Unarchive {{ spark_tmp_tgz }}
       become: true
       become_user: root

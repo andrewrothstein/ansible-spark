@@ -8,11 +8,12 @@ galaxy_info:
     - spark
   license: MIT
   min_ansible_version: '1.2'
+  namespace: andrewrothstein
   platforms:
     - name: Alpine
       versions:
         - all
-    - name: Archlinux
+    - name: ArchLinux
       versions:
         - all
     - name: Debian
@@ -21,14 +22,14 @@ galaxy_info:
         - bullseye
     - name: EL
       versions:
-        - 8
-        - 9
+        - '8'
+        - '9'
     - name: Fedora
       versions:
-        - 37
-        - 38
+        - '39'
+        - '40'
     - name: Ubuntu
       versions:
-        - focal
         - jammy
+        - noble
   role_name: spark
