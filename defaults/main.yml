@@ -1,5 +1,5 @@
 ---
-spark_ver: 3.5.4
+spark_ver: 3.5.5
 spark_hadoop_ver: hadoop3
 spark_mirror_url: https://archive.apache.org/dist/spark
 
@@ -208,3 +208,10 @@ spark_checksums:
     hadoop3: sha512:df049be04119d4943f5c048108e511a95d05a7cdcf7f1256384a3a6caa322f7898b6b1b20b0ad45036887f4ae93ce5f17ac97906950b14f07532d94ed7fe1faa
     # https://archive.apache.org/dist/spark/spark-3.5.4/spark-3.5.4-bin-without-hadoop.tgz.sha512
     without-hadoop: sha512:e8844c76cb901723adcec01ecc728754d47b6a0501106127ce6fd23fa1268bcac37c21966db361fcd4012b5d06048abe9ee138f1f23d406ddf5145c25d921e24
+  '3.5.5':
+    # https://archive.apache.org/dist/spark/spark-3.5.5/spark-3.5.5-bin-hadoop3-scala2.13.tgz.sha512
+    hadoop3-scala2.13: sha512:a462656d2a87afcf81f24e4dea9a99e6666ed5c8ff7ba0cc9c936188498c549cf852d0ebb475325761d6cf645d1184d527be9a609503d587bb47d5532b533aa1
+    # https://archive.apache.org/dist/spark/spark-3.5.5/spark-3.5.5-bin-hadoop3.tgz.sha512
+    hadoop3: sha512:ec5ff678136b1ff981e396d1f7b5dfbf399439c5cb853917e8c954723194857607494a89b7e205fce988ec48b1590b5caeae3b18e1b5db1370c0522b256ff376
+    # https://archive.apache.org/dist/spark/spark-3.5.5/spark-3.5.5-bin-without-hadoop.tgz.sha512
+    without-hadoop: sha512:0dbb0a9a8dcd9f55a871438db15091185afc8e766149b5d136712855c5bdfe7fdfff4af424161d901598a69075133fbba32052d3ca50bcfada3fb925569bd6b3
